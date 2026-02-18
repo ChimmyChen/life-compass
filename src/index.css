@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme {
+  /* 治愈系色彩系统 — 淡绿主色调 */
+  --color-cream: #F8FAF6;
+  --color-cream-dark: #EBF0E5;
+  --color-mist: #E6F2E8;
+  --color-mist-dark: #C5DFC9;
+  --color-blush: #F0F7F1;
+  --color-blush-dark: #D5E8D8;
+  --color-sage: #DCE8DC;
+  --color-sage-dark: #B8D0B8;
+  --color-lavender: #E8F0E8;
+  --color-lavender-dark: #C8D8C8;
+  --color-sand: #F0EDE5;
+  --color-sand-dark: #DDD8CC;
+
+  /* 主色调 — 淡绿色系 */
+  --color-primary: #6BAF8D;
+  --color-primary-light: #92C8A8;
+  --color-primary-dark: #4E9470;
+  --color-secondary: #8BB0A0;
+  --color-secondary-light: #B0CFC0;
+  --color-accent: #A8C090;
+  --color-accent-light: #C4D8B0;
+
+  /* 文字色 */
+  --color-text-main: #3D4F44;
+  --color-text-light: #5F7A68;
+  --color-text-muted: #8FA898;
+  --color-text-heading: #2A3B30;
+
+  /* 功能色 */
+  --color-success: #7DD3A0;
+  --color-warning: #F0E6B8;
+  --color-error: #E8A0A0;
+
+  /* 阴影 */
+  --shadow-soft: 0 2px 20px -4px rgba(40, 80, 60, 0.06), 0 4px 8px -4px rgba(40, 80, 60, 0.03);
+  --shadow-medium: 0 8px 30px -6px rgba(40, 80, 60, 0.08), 0 4px 12px -4px rgba(40, 80, 60, 0.04);
+  --shadow-glow: 0 0 25px rgba(107, 175, 141, 0.18);
+
+  /* 字体 */
+  --font-sans: 'Noto Sans SC', 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Tailwind v4 默认 ring 颜色覆盖 */
+  --default-ring-color: rgba(107, 175, 141, 0.3);
+}
+
+/* 全局覆盖浏览器默认蓝色 focus 样式 */
+*:focus {
+  outline-color: var(--color-primary);
+}
+*:focus-visible {
+  outline-color: var(--color-primary);
+}
+/* 强制所有 ring 使用绿色 */
+*, *::before, *::after {
+  --tw-ring-color: rgba(107, 175, 141, 0.3);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-main);
+  background: linear-gradient(160deg, var(--color-cream) 0%, var(--color-mist) 40%, var(--color-blush) 70%, #F5F0E8 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-text-muted); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-light); }
+
+::selection {
+  background: var(--color-primary-light);
+  color: var(--color-text-heading);
+}
+
+/* 全局去除浏览器默认蓝色 outline */
+*:focus-visible {
+  outline-color: var(--color-primary);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+/* ===== 不规则动效 ===== */
+
+/* Blob 形变动画 */
+@keyframes blob-morph {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: rotate(90deg) scale(1.05);
+  }
+  50% {
+    border-radius: 50% 60% 30% 60% / 30% 50% 70% 60%;
+    transform: rotate(180deg) scale(0.95);
+  }
+  75% {
+    border-radius: 60% 30% 60% 40% / 70% 40% 50% 60%;
+    transform: rotate(270deg) scale(1.02);
+  }
+}
+
+/* 漂浮动画 */
+@keyframes float-drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(15px, -20px) rotate(5deg); }
+  40% { transform: translate(-10px, -35px) rotate(-3deg); }
+  60% { transform: translate(20px, -15px) rotate(4deg); }
+  80% { transform: translate(-15px, -25px) rotate(-5deg); }
+}
+
+/* 呼吸动画 */
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.08); }
+}
+
+/* 波浪动画 */
+@keyframes wave-flow {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(-25px) translateY(8px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+/* 柔和脉冲 */
+@keyframes gentle-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(107, 175, 141, 0.25); }
+  50% { box-shadow: 0 0 0 15px rgba(107, 175, 141, 0); }
+}
+
+/* 旋转漂浮 */
+@keyframes spin-float {
+  0% { transform: rotate(0deg) translateY(0); }
+  25% { transform: rotate(90deg) translateY(-10px); }
+  50% { transform: rotate(180deg) translateY(0); }
+  75% { transform: rotate(270deg) translateY(10px); }
+  100% { transform: rotate(360deg) translateY(0); }
+}
